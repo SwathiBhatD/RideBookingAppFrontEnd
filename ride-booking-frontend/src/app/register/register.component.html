@@ -1,0 +1,68 @@
+<mat-toolbar color="primary" class="mat-elevation-z5">
+  <span  routerLink="/"class="icon"><mat-icon style="height:21px;cursor:pointer;">local_taxi</mat-icon>BookMyRide</span>
+
+  <div class="spacer"></div>
+
+  <a mat-raised-button color="accent"routerLink="/login">Login</a>
+
+</mat-toolbar>
+
+<div class="register-form">
+    <div class="container1">
+      
+      <div class="screen">
+        <div class="screen__content">
+          
+          <form class="login" #registerform="ngForm" (ngSubmit)="userRegister()">
+            <div class="heading">
+              <h2>User Registration</h2>
+              <!-- <small [class.text-danger]="msg.status==500">{{msg.message}}
+              </small> -->
+              <small class="text-danger">{{msg}}
+              </small> 
+            </div>
+            <div class="form-group login__field">
+                <input type="text" class="form-control" placeholder="Name"id="name"name="name"[(ngModel)]="user.name" required #name="ngModel"
+                [class.is-invalid]="name.invalid && name.touched">
+                <small class="text-danger"[class.d-none]="name.valid || name.untouched">User name is required</small>
+              </div>
+              <div class=" form-group login__field">
+           
+                <input type="text" class="form-control" placeholder=" Email" name="email"[(ngModel)]="user.email" required pattern="^[a-z0-9_]+@[a-z]+\.[a-z]{2,3}"#email="ngModel"
+                [class.is-invalid]="email.invalid && email.touched">
+                <!-- <small class="text-danger"[class.d-none]="email.valid || email.untouched">Email field is required</small> -->
+                <div *ngIf="email.errors && (email.invalid && email.touched)">
+                  <small class="text-danger" *ngIf="email.errors['required'] ">Email field is required</small>
+                  <small class="text-danger"*ngIf="email.errors['pattern'] ">Enter proper Email id</small>
+                </div>
+              </div>
+              <div class="form-group login__field">
+            
+                <input type="password" class="form-control" placeholder="Password"name="password"[(ngModel)]="user.password" required #password="ngModel"
+                [class.is-invalid]="password.invalid && password.touched">
+    
+                <small class="text-danger"[class.d-none]="password.valid || password.untouched">Password field is required</small>
+                
+              </div>
+            <div class="form-group login__field">
+              
+                <input type="password" class="form-control" placeholder="Confirm Password" id="cpassword" name="cpassword"[(ngModel)]="user.cpassword" required #cpassword="ngModel"
+                [class.is-invalid]="cpassword.invalid && cpassword.touched">
+                <small class="text-danger"[class.d-none]="cpassword.value==password.value || cpassword.untouched">Password and confirm password must be same.</small>
+              </div>
+            <button [disabled]="registerform.form.invalid"class="button login__submit">
+              <span class="button__text">Register Now</span>
+              
+            </button>				
+          </form>
+          
+        </div>
+        <div class="screen__background">
+          <span class="screen__background__shape screen__background__shape4"></span>
+          <span class="screen__background__shape screen__background__shape3"></span>		
+          <span class="screen__background__shape screen__background__shape2"></span>
+          <span class="screen__background__shape screen__background__shape1"></span>
+        </div>		
+      </div>
+    </div>
+  </div>
